@@ -1,0 +1,1387 @@
+@import "~normalize.css";
+
+//$main-color: #e9e0c0;
+$main-color: #ddd5bc;
+$puzzle-color: #85aa53;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: url("../assets/images/boards.jpg") center center no-repeat;
+  background-size: cover;
+  width: 100vw;
+  height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .container {
+    position: relative;
+    margin: 0 10px;
+    //width: 700px;
+    //height: 600px;
+    width: 45%;
+    height: 90vh;
+    background-color: transparent;
+    display: grid;
+    grid-template: 'scoreboard' 20% 'main-area' 1fr/1fr;
+
+    @media screen and (max-width: 1279px) {
+
+      & {
+        width: 70%;
+      }
+    }
+    @media screen and (max-width: 767px) {
+
+      & {
+        width: 100%;
+      }
+    }
+
+    .scoreboard {
+      //margin-bottom: 10px;
+      border-radius: 4px;
+
+      grid-area: scoreboard;
+      display: grid;
+      grid-template: 'volume time pause moves help' 1fr/ 0.5fr 1fr 1fr 1fr 0.5fr;
+
+      font-size: 35px;
+      font-family: Consolas, Georgia, sans-serif;
+      color: black;
+      background-color: rgba(0, 0, 0, 0.5);
+      //background-color: rgba(255, 255, 255, 0.5);
+
+      -moz-user-select: none;
+      user-select: none;
+
+
+      .volume {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: $puzzle-color;
+
+        @media screen and (max-width: 767px) {
+          & {
+            font-size: 20px;
+          }
+        }
+
+        @media screen and (max-width: 440px) {
+          & {
+            font-size: 15px;
+          }
+        }
+        @media screen and (max-width: 319px) {
+          & {
+            font-size: 10px;
+          }
+        }
+
+        svg {
+          cursor: pointer;
+
+          &:hover {
+            //box-shadow: 0 0 5px $puzzle-color;
+            //border-radius: 50%;
+          }
+
+        }
+      }
+
+      .volume_Off {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: red;
+        @media screen and (max-width: 767px) {
+          & {
+            font-size: 20px;
+          }
+        }
+        @media screen and (max-width: 440px) {
+          & {
+            font-size: 15px;
+          }
+        }
+        @media screen and (max-width: 319px) {
+          & {
+            font-size: 10px;
+          }
+        }
+
+        svg {
+          cursor: pointer;
+
+          &:hover {
+            //box-shadow: 0 0 5px red;
+            //border-radius: 50%;
+          }
+        }
+      }
+
+      .time {
+        grid-area: time;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        font-size: 25px;
+        color: $puzzle-color;
+        @media screen and (max-width: 767px) {
+          & {
+            font-size: 20px;
+          }
+        }
+        @media screen and (max-width: 440px) {
+          & {
+            font-size: 15px;
+          }
+        }
+        @media screen and (max-width: 319px) {
+          & {
+            font-size: 10px;
+          }
+        }
+
+      }
+
+      .pause {
+        grid-area: pause;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        font-size: 25px;
+        @media screen and (max-width: 767px) {
+          & {
+            font-size: 20px;
+          }
+        }
+        @media screen and (max-width: 440px) {
+          & {
+            font-size: 15px;
+          }
+        }
+        @media screen and (max-width: 319px) {
+          & {
+            font-size: 10px;
+          }
+        }
+
+        .pauseBtn {
+          cursor: pointer;
+          color: $puzzle-color;
+          //transition: color 0.5s linear;
+
+          &:hover {
+            text-shadow: 0 0 5px $puzzle-color;
+            //color: red;
+          }
+
+        }
+
+
+      }
+
+      .moves {
+        grid-area: moves;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        font-size: 25px;
+        color: $puzzle-color;
+        @media screen and (max-width: 767px) {
+          & {
+            font-size: 20px;
+          }
+        }
+        @media screen and (max-width: 440px) {
+          & {
+            font-size: 15px;
+          }
+        }
+        @media screen and (max-width: 319px) {
+          & {
+            font-size: 10px;
+          }
+        }
+
+      }
+
+      .help {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        @media screen and (max-width: 767px) {
+          & {
+            font-size: 20px;
+          }
+        }
+        @media screen and (max-width: 440px) {
+          & {
+            font-size: 15px;
+          }
+        }
+        @media screen and (max-width: 319px) {
+          & {
+            font-size: 10px;
+          }
+        }
+
+
+        .help-icon {
+          cursor: pointer;
+          color: $puzzle-color;
+          //transition: color 0.5s ease-in-out;
+          &:hover {
+            color: red;
+          }
+        }
+
+      }
+
+
+    }
+
+    .main-area {
+      position: relative;
+      padding: 2px;
+
+      grid-area: main-area;
+      display: grid;
+      grid-gap: 5px;
+      //grid-template-columns: repeat(4, 1fr);
+      grid-auto-rows: 1fr;
+
+
+      //background-color: transparent;
+      //border: 5px rgba(0,0,0,0.5) solid;
+
+      .puzzle {
+        //background-size: cover;
+        //background-image: url('./assets/images/puzzle-images/1.jpg');
+
+        position: relative;
+
+        cursor: pointer;
+        background-color: $puzzle-color;
+        transition: background-color 0.2s ease-in-out;
+        border-radius: 4px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        font-size: 35px;
+        font-family: Consolas, Georgia, sans-serif;
+        //color: #b300ff;
+        color: white;
+        font-weight: 700;
+        -moz-user-select: none;
+        user-select: none;
+
+
+        &:hover {
+          background-color: #bee38a;
+        }
+      }
+
+      .empty {
+        position: relative;
+      }
+
+
+    }
+
+
+  }
+
+}
+
+
+// Menu
+
+.menu {
+  position: absolute;
+  margin: auto;
+  //width: 100%;
+  //height: 100%;
+  width: 45%;
+  height: 90vh;
+
+  z-index: 1000;
+  background-color: rgba(0, 0, 0, 0.7);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  font-family: Consolas, Georgia, sans-serif;
+  color: red;
+  font-size: 25px;
+
+  -moz-user-select: none;
+  user-select: none;
+
+  @media screen and (max-width: 1279px) {
+
+    & {
+      width: 70%;
+    }
+  }
+  @media screen and (max-width: 767px) {
+
+    & {
+      width: 100%;
+    }
+  }
+  @media screen and (max-width: 320px) {
+
+    & {
+      font-size: 20px;
+    }
+  }
+
+  .menu-item {
+    cursor: pointer;
+    margin-bottom: 20px;
+    //transition: text-shadow 0.2s ease-in-out;
+    &:hover {
+      text-shadow: 0px 0px 5px red;
+    }
+  }
+
+
+  //.continueGameBtn {
+  //
+  //}
+  //
+  //.newGameBtn {
+  //
+  //}
+  //
+  //.saveGameBtn {
+  //
+  //}
+  //
+  //.savedGamesBtn {
+  //
+  //}
+  //
+  //.bestScoresBtn {
+  //
+  //}
+  //
+  //.rulesGameBtn {
+  //
+  //}
+  //
+  //.settingsBtn {
+  //
+  //}
+
+}
+
+
+// for drag and drop
+
+.puzzle_hidden {
+  visibility: hidden;
+}
+
+.empty_hovered {
+  background-color: rgba(0, 0, 0, 0.5);;
+}
+
+
+// Win Menu
+
+.win-menu {
+
+  position: absolute;
+  //width: 100%;
+  //height: 600px;
+  //height: 100%;
+  //width: 45%;
+  //height: 90vh;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+  background-color: rgba(0, 0, 0, 0.8);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  -moz-user-select: none;
+  user-select: none;
+
+  .win-menu__text {
+    text-align: center;
+    line-height: 150%;
+    font-family: Consolas, Georgia, sans-serif;
+    font-size: 27px;
+    display: flex;
+    flex-wrap: wrap;
+    color: #25ff54;
+    width: 70%;
+  }
+
+  .win-menu__btn {
+    margin-top: 10%;
+    width: 100px;
+    height: 35px;
+
+    cursor: pointer;
+    outline: none;
+    border: none;
+    background-color: green;
+    color: white;
+    font-size: 18px;
+    border-radius: 4px;
+
+
+    &:hover {
+      box-shadow: 0 0 5px $puzzle-color;
+    }
+
+    &:active {
+      box-shadow: 0 0 10px $puzzle-color;
+    }
+  }
+
+}
+
+
+// Saved Games Menu
+
+.savedGamesMenu {
+
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+  background-color: rgba(0, 0, 0, 0.8);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  -moz-user-select: none;
+  user-select: none;
+
+  .savedGamesMenuTitleWrapper {
+    font-size: 25px;
+    font-family: Consolas, Georgia, sans-serif;
+    color: red;
+
+    @media screen and (max-width: 370px) {
+      & {
+        font-size: 20px;
+      }
+    }
+
+    .savedGamesMenuTitle {
+
+
+      .savedGamesMenuTitleCount {
+
+      }
+    }
+  }
+
+
+  // Slider styles
+  .slider {
+
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+    align-items: center;
+
+    .angle-left {
+      opacity: 0.4;
+    }
+
+    .angles {
+
+      cursor: pointer;
+      color: $puzzle-color;
+      font-size: 50px;
+    }
+
+    .screen {
+      width: 55%;
+      position: relative;
+      background-color: #0e6080;
+
+      cursor: initial;
+      @media screen and (max-width: 550px) {
+        & {
+          width: 70%;
+        }
+      }
+
+      &:after {
+        position: absolute;
+        content: '';
+        top: 0;
+        background-color: rgba(255, 255, 255, 0);
+        width: 100%;
+        height: 100%;
+      }
+
+
+      .scoreboard {
+        width: 100%;
+        @media screen and (max-width: 370px) {
+          & {
+            height: 3vh;
+          }
+        }
+
+        .time {
+          font-size: 15px !important;
+          @media screen and (max-width: 550px) {
+            & {
+              font-size: 10px !important;
+            }
+          }
+          @media screen and (max-width: 370px) {
+            & {
+              font-size: 7px !important;
+            }
+          }
+        }
+
+        .volume {
+          font-size: 15px !important;
+          @media screen and (max-width: 550px) {
+            & {
+              font-size: 10px !important;
+            }
+          }
+          @media screen and (max-width: 370px) {
+            & {
+              font-size: 7px !important;
+            }
+          }
+        }
+
+        .pause {
+          font-size: 15px !important;
+          @media screen and (max-width: 550px) {
+            & {
+              font-size: 10px !important;
+            }
+          }
+          @media screen and (max-width: 370px) {
+            & {
+              font-size: 7px !important;
+            }
+          }
+        }
+
+        .moves {
+          font-size: 15px !important;
+          @media screen and (max-width: 550px) {
+            & {
+              font-size: 10px !important;
+            }
+          }
+          @media screen and (max-width: 370px) {
+            & {
+              font-size: 7px !important;
+            }
+          }
+        }
+
+        .help {
+          font-size: 15px !important;
+          @media screen and (max-width: 550px) {
+            & {
+              font-size: 10px !important;
+            }
+          }
+          @media screen and (max-width: 370px) {
+            & {
+              font-size: 7px !important;
+            }
+          }
+        }
+
+      }
+
+      .main-area {
+
+        width: 100%;
+        height: 35vh;
+        //grid-gap: 1vw;
+
+        .puzzle {
+
+        }
+      }
+    }
+
+  }
+
+  .savedGamesMenuButtonsWrapper {
+
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+
+    .loadButton {
+
+      //margin-top: 10%;
+      width: 100px;
+      height: 35px;
+
+      cursor: pointer;
+      outline: none;
+      border: none;
+      background-color: green;
+      color: white;
+      font-size: 18px;
+      border-radius: 4px;
+
+
+      &:hover {
+        box-shadow: 0 0 5px $puzzle-color;
+      }
+
+      &:active {
+        box-shadow: 0 0 10px $puzzle-color;
+      }
+
+
+    }
+
+    .removeButton {
+
+      //margin-top: 10%;
+      width: 100px;
+      height: 35px;
+
+      cursor: pointer;
+      outline: none;
+      border: none;
+      background-color: darkred;
+      color: white;
+      font-size: 18px;
+      border-radius: 4px;
+
+
+      &:hover {
+        box-shadow: 0 0 5px #ff0000;
+      }
+
+      &:active {
+        box-shadow: 0 0 10px red;
+      }
+
+    }
+
+  }
+
+  .noSavedGamesText {
+
+    text-align: center;
+    line-height: 150%;
+    font-family: Consolas, Georgia, sans-serif;
+    font-size: 27px;
+    color: #25ff54;
+    width: 70%;
+  }
+
+  .noSavedGamesModalButton {
+
+    margin-top: 10%;
+    width: 100px;
+    height: 35px;
+
+    cursor: pointer;
+    outline: none;
+    border: none;
+    background-color: green;
+    color: white;
+    font-size: 18px;
+    border-radius: 4px;
+
+
+    &:hover {
+      box-shadow: 0 0 5px $puzzle-color;
+    }
+
+    &:active {
+      box-shadow: 0 0 10px $puzzle-color;
+    }
+  }
+
+
+}
+
+
+// Best Scores Menu
+
+
+.bestScoresMenu {
+
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+  background-color: rgba(0, 0, 0, 0.8);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+
+  color: red;
+
+
+  .bestScoresMenuTitle {
+    order: 1;
+    color: red;
+    font-family: Consolas, Georgia, sans-serif;
+    font-size: 29px;
+
+    @media screen and (max-width: 370px) {
+      & {
+        font-size: 25px;
+      }
+    }
+  }
+
+  .noResults {
+    order: 2;
+    color: red;
+    font-family: Consolas, Georgia, sans-serif;
+    font-size: 40px;
+    font-weight: 900;
+  }
+
+  .bestScoresMenuGrid {
+    order: 2;
+    width: 80%;
+    //height: 60%;
+    height: auto;
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(11, 1fr);
+    //grid-row-gap: 1%;
+    color: #25ff54;
+    font-size: 25px;
+    font-family: Consolas, Georgia, sans-serif;
+    border-top: 1px solid #25ff54;
+
+    @media screen and (max-width: 370px) {
+      & {
+        font-size: 20px;
+      }
+    }
+
+
+    .bestScoresMenuGridID {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-left: 1px solid #25ff54;
+      border-right: 1px solid #25ff54;
+      border-bottom: 1px solid #25ff54;
+    }
+
+    .bestScoresMenuGridBoardSize {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-right: 1px solid #25ff54;
+      border-bottom: 1px solid #25ff54;
+    }
+
+    .bestScoresMenuGridTime {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-right: 1px solid #25ff54;
+      border-bottom: 1px solid #25ff54;
+
+    }
+
+    .bestScoresMenuGridMoves {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: red;
+      border-right: 1px solid #25ff54;
+      border-bottom: 1px solid #25ff54;
+
+    }
+
+
+  }
+
+
+  .clearBestScoresBtn {
+    order: 3;
+
+    width: 100px;
+    height: 35px;
+
+    cursor: pointer;
+    outline: none;
+    border: none;
+    background-color: darkred;
+    color: white;
+    font-size: 18px;
+    border-radius: 4px;
+
+
+    &:hover {
+      box-shadow: 0 0 5px #ff0000;
+    }
+
+    &:active {
+      box-shadow: 0 0 10px red;
+    }
+
+  }
+
+
+  .backButton {
+    order: 4;
+  }
+
+
+  -moz-user-select: none;
+  user-select: none;
+
+
+}
+
+
+// Game rules Menu
+
+
+.rulesMenu {
+
+  color: #25ff54;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+  background-color: rgba(0, 0, 0, 0.8);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+
+  .rulesMenuTitle {
+    font-size: 29px;
+    font-family: Consolas, Georgia, sans-serif;
+    color: red;
+  }
+
+  .content {
+    width: 80%;
+    height: 60%;
+
+    overflow-y: scroll;
+
+    font-size: 20px;
+    font-family: Consolas, Georgia, sans-serif;
+
+
+    p {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .mainText {
+
+    }
+
+    .p1 {
+      margin-top: 2%;
+    }
+
+    .p2 {
+      margin-top: 1%;
+    }
+
+    .p3 {
+      margin-top: 1%;
+    }
+
+    .p4 {
+      margin-top: 1%;
+    }
+
+    .p5 {
+      margin-top: 1%;
+    }
+
+    .p6 {
+      margin-top: 1%;
+    }
+
+    .p7 {
+      margin-top: 1%;
+    }
+
+    .p8 {
+      margin-top: 1%;
+    }
+
+    .p9 {
+      margin-top: 1%;
+    }
+
+    .p10 {
+      margin-top: 1%;
+    }
+  }
+
+
+}
+
+
+//backButton styles
+
+
+.backButton {
+
+  font-family: Consolas, Georgia, sans-serif;
+  cursor: pointer;
+  font-size: 32px;
+  color: red;
+  -moz-user-select: none;
+  user-select: none;
+
+  &:hover {
+    text-shadow: 0px 0px 5px red;
+  }
+}
+
+
+// Settings menu
+
+.settingsMenu {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+  background-color: rgba(0, 0, 0, 0.8);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+
+  -moz-user-select: none;
+  user-select: none;
+  color: #25ff54;
+
+
+  .settingsMenuTitle {
+    font-size: 29px;
+    font-family: Consolas, Georgia, sans-serif;
+    color: red;
+    @media screen and (max-width: 520px) {
+      & {
+        font-size: 25px;
+      }
+    }
+  }
+
+
+  .boardSizeWrapper {
+    width: 50%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    @media screen and (max-width: 520px) {
+      & {
+        width: 70%;
+      }
+    }
+
+    .boardSizeText {
+      text-align: center;
+      font-size: 25px;
+      font-family: Consolas, Georgia, sans-serif;
+      @media screen and (max-width: 520px) {
+        & {
+          font-size: 20px;
+        }
+      }
+    }
+
+    .boardSizeSelect {
+      font-size: 20px;
+      font-family: Consolas, Georgia, sans-serif;
+      cursor: pointer;
+      outline: none;
+      border-radius: 4px;
+      width: 25%;
+      @media screen and (max-width: 520px) {
+        & {
+          font-size: 15px;
+        }
+      }
+    }
+
+  }
+
+
+  .moveAnimationWrapper {
+    width: 50%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    @media screen and (max-width: 520px) {
+      & {
+        width: 70%;
+      }
+    }
+
+
+    .moveAnimationText {
+      text-align: center;
+      font-size: 25px;
+      font-family: Consolas, Georgia, sans-serif;
+      @media screen and (max-width: 520px) {
+        & {
+          font-size: 20px;
+        }
+      }
+    }
+
+
+    /* The switch - the box around the slider */
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 47px;
+      height: 27px;
+      @media screen and (max-width: 520px) {
+        & {
+          width: 35px;
+          height: 20px;
+        }
+      }
+    }
+
+    /* Hide default HTML checkbox */
+    .switch input {
+      display: none;
+    }
+
+    /* The slider */
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ccc;
+      -webkit-transition: .4s;
+      transition: .4s;
+    }
+
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 20px;
+      width: 20px;
+      left: 4px;
+      bottom: 4px;
+      background-color: white;
+      -webkit-transition: .4s;
+      transition: .4s;
+      @media screen and (max-width: 520px) {
+        & {
+          height: 13px;
+          width: 14px;
+        }
+      }
+    }
+
+    input:checked + .slider {
+      background-color: #2196F3;
+    }
+
+    input:focus + .slider {
+      box-shadow: 0 0 1px #2196F3;
+    }
+
+    input:checked + .slider:before {
+      -webkit-transform: translateX(20px);
+      -ms-transform: translateX(20px);
+      transform: translateX(20px);
+      @media screen and (max-width: 520px) {
+        & {
+          -webkit-transform: translateX(14px);
+          -ms-transform: translateX(14px);
+          transform: translate(14px);
+        }
+      }
+    }
+
+    /* Rounded sliders */
+    .slider.round {
+      border-radius: 34px;
+    }
+
+    .slider.round:before {
+      border-radius: 50%;
+    }
+  }
+
+
+  .difficultyWrapper {
+    width: 50%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    @media screen and (max-width: 520px) {
+      & {
+        width: 70%;
+      }
+    }
+
+    .difficultyText {
+      text-align: center;
+      font-size: 25px;
+      font-family: Consolas, Georgia, sans-serif;
+      @media screen and (max-width: 520px) {
+        & {
+          font-size: 20px;
+        }
+      }
+    }
+
+    .difficultySelect {
+      font-size: 20px;
+      font-family: Consolas, Georgia, sans-serif;
+      cursor: pointer;
+      outline: none;
+      border-radius: 4px;
+      width: 30%;
+      @media screen and (max-width: 520px) {
+        & {
+          font-size: 15px;
+        }
+      }
+    }
+  }
+
+  .buttonsWrapper {
+
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+
+
+    .saveBtn {
+      width: 100px;
+      height: 35px;
+
+      cursor: pointer;
+      outline: none;
+      border: none;
+      background-color: green;
+      color: white;
+      font-size: 18px;
+      border-radius: 4px;
+
+
+      &:hover {
+        box-shadow: 0 0 5px $puzzle-color;
+      }
+
+      &:active {
+        box-shadow: 0 0 10px $puzzle-color;
+      }
+    }
+
+
+    .resetBtn {
+      width: 100px;
+      height: 35px;
+
+      cursor: pointer;
+      outline: none;
+      border: none;
+      background-color: darkred;
+      color: white;
+      font-size: 18px;
+      border-radius: 4px;
+
+
+      &:hover {
+        box-shadow: 0 0 5px red;
+      }
+
+      &:active {
+        box-shadow: 0 0 10px red;
+      }
+    }
+
+
+  }
+
+
+}
+
+
+// Scroll
+::-webkit-scrollbar {
+  width: 6px;
+
+}
+
+::-webkit-scrollbar-thumb {
+  border-width: 1px 1px 1px 2px;
+  border-color: #777;
+  background-color: #aaa;
+  border-radius: 4px;
+}
+
+
+// Help menu
+
+.helpMenu {
+
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+  background-color: rgba(0, 0, 0, 0.8);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  -moz-user-select: none;
+  user-select: none;
+
+
+  .helpMenuTitle {
+    font-size: 29px;
+    font-family: Consolas, Georgia, sans-serif;
+    color: red;
+    @media screen and (max-width: 439px) {
+
+      & {
+        font-size: 25px;
+      }
+    }
+  }
+
+  .helpText {
+    text-align: center;
+    line-height: 150%;
+    font-family: Consolas, Georgia, sans-serif;
+    font-size: 27px;
+    display: flex;
+    flex-wrap: wrap;
+    color: #25ff54;
+    width: 70%;
+    @media screen and (max-width: 439px) {
+
+      & {
+        width: 80%;
+        font-size: 20px;
+      }
+    }
+  }
+
+  .helpImage {
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 40%;
+    height: 35%;
+
+    @media screen and (max-width: 439px) {
+
+      & {
+        width: 60%;
+        height: 55%;
+      }
+    }
+  }
+
+
+  .okBtn {
+    width: 100px;
+    height: 35px;
+
+    cursor: pointer;
+    outline: none;
+    border: none;
+    background-color: green;
+    color: white;
+    font-size: 18px;
+    border-radius: 4px;
+
+
+    &:hover {
+      box-shadow: 0 0 5px $puzzle-color;
+    }
+
+    &:active {
+      box-shadow: 0 0 10px $puzzle-color;
+    }
+  }
+
+}
+
+::-webkit-scrollbar-thumb:hover {
+  border-width: 1px 1px 1px 2px;
+  border-color: #555;
+  background-color: #777;
+}
+
+::-webkit-scrollbar-track {
+  border-width: 0;
+}
+
+::-webkit-scrollbar-track:hover {
+  border-left: solid 1px #aaa;
+  background-color: #eee;
+}
+
+
+
+
+
+
+
+
+
+

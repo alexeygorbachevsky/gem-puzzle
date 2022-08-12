@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "target": "ES6",
+    "module": "commonjs",
+    "allowSyntheticDefaultImports": true,
+    "baseUrl": "./",
+    "paths": {
+      "helpers": ["src/helpers"],
+      "constants/*": ["src/constants/*"],
+      "assets/*": ["src/assets/*"],
+      "helpers/*": ["src/helpers/*"],
+      "styles/*": ["src/styles/*"]
+    }
+  }
+}
