@@ -10,10 +10,9 @@ function initiateAudio() {
     const source = document.createElement("source");
     source.src = src;
 
-    // TODO: uncomment
-    // if (name === "audioMenu" && values.isVolumeOn) {
-    //   elements[name].setAttribute("autoplay", "");
-    // }
+    if (name === "audioMenu" && values.isVolumeOn) {
+      elements[name].setAttribute("autoplay", "");
+    }
 
     elements[name].appendChild(source);
 

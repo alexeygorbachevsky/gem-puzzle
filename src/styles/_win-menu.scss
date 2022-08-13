@@ -1,0 +1,54 @@
+@mixin win-menu($puzzle-color) {
+  .win-menu {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+    background-color: rgba(0, 0, 0, 0.8);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    -moz-user-select: none;
+    user-select: none;
+
+    .win-menu__text {
+      text-align: center;
+      line-height: 150%;
+      font-family: Consolas, Georgia, sans-serif;
+      font-size: 27px;
+      display: flex;
+      flex-wrap: wrap;
+      color: #25ff54;
+      width: 70%;
+    }
+
+    .win-menu__btn {
+      margin-top: 10%;
+      width: 100px;
+      height: 35px;
+
+      cursor: pointer;
+      outline: none;
+      border: none;
+      background-color: green;
+      color: white;
+      font-size: 18px;
+      border-radius: 4px;
+
+
+      &:hover {
+        box-shadow: 0 0 5px $puzzle-color;
+      }
+
+      &:active {
+        box-shadow: 0 0 10px $puzzle-color;
+      }
+    }
+
+  }
+
+}
+
+

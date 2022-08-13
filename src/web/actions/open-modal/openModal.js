@@ -32,6 +32,7 @@ function openModal(text) {
     elements.savedGamesMenu.remove();
     openMenu.call(this);
   });
+
   noSavedGamesModalButton.addEventListener("mouseover", () => {
     if (values.isVolumeOn) {
       elements.audioMenuItemHover.play();

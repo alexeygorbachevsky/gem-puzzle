@@ -1,82 +1,68 @@
+import { getIsElementsInOneRow } from "helpers";
+
 import { checkPuzzlesIndexesOrder } from "../check-puzzles-indexes-order";
-import { animateSwapping } from "./helpers";
+import { animateSwapping } from "./actions";
 
 function swapPuzzles(puzzle) {
   const { elements, values } = this._state;
 
-  // find indexes of shifted and empty elements into puzzles array
-  const shiftedElementIndex = elements.puzzles.indexOf(
-    elements.puzzles.find(el => el.id === puzzle.id),
+  const shiftedElementIndex = elements.puzzles.findIndex(
+    el => el.id === puzzle.id,
   );
-  const emptyElementIndex = elements.puzzles.indexOf(
-    elements.puzzles.find(el => el.className === "empty"),
+  const emptyElementIndex = elements.puzzles.findIndex(
+    el => el.className === "empty",
   );
 
-  // Border checking
-  const isElementsInAOneRow = () => {
-    const shiftedElementRowNumber =
-      Math.floor(shiftedElementIndex / values.dimension) + 1;
-    const emptyElementRowNumber =
-      Math.floor(emptyElementIndex / values.dimension) + 1;
+  const isElementsInOneRow = getIsElementsInOneRow({
+    values,
+    currentPuzzleIndex: shiftedElementIndex,
+    emptyElementIndex,
+  });
 
-    return shiftedElementRowNumber === emptyElementRowNumber;
-  };
   if (
     shiftedElementIndex === emptyElementIndex + values.dimension ||
     shiftedElementIndex === emptyElementIndex - values.dimension ||
-    (shiftedElementIndex === emptyElementIndex + 1 && isElementsInAOneRow()) ||
-    (shiftedElementIndex === emptyElementIndex - 1 && isElementsInAOneRow())
+    (shiftedElementIndex === emptyElementIndex + 1 && isElementsInOneRow) ||
+    (shiftedElementIndex === emptyElementIndex - 1 && isElementsInOneRow)
   ) {
     if (values.isAnimation) {
+      let direction;
       switch (shiftedElementIndex) {
         case emptyElementIndex + values.dimension: {
-          animateSwapping.call(
-            this,
-            "top",
-            shiftedElementIndex,
-            emptyElementIndex,
-          );
+          direction = "top";
           break;
         }
         case emptyElementIndex - values.dimension: {
-          animateSwapping.call(
-            this,
-            "bottom",
-            shiftedElementIndex,
-            emptyElementIndex,
-          );
+          direction = "bottom";
           break;
         }
         case emptyElementIndex + 1: {
-          animateSwapping.call(
-            this,
-            "left",
-            shiftedElementIndex,
-            emptyElementIndex,
-          );
+          direction = "left";
           break;
         }
         case emptyElementIndex - 1: {
-          animateSwapping.call(
-            this,
-            "right",
-            shiftedElementIndex,
-            emptyElementIndex,
-          );
+          direction = "right";
           break;
         }
         default: {
           break;
         }
       }
+
+      if (direction) {
+        animateSwapping.call(
+          this,
+          direction,
+          shiftedElementIndex,
+          emptyElementIndex,
+        );
+      }
     } else {
-      // swap elements
       const extra = elements.puzzles[shiftedElementIndex];
       elements.puzzles[shiftedElementIndex] =
         elements.puzzles[emptyElementIndex];
       elements.puzzles[emptyElementIndex] = extra;
 
-      // clean and rerender of mainArea
       elements.mainArea.innerHTML = "";
       elements.puzzles.forEach(el => {
         elements.mainArea.appendChild(el);

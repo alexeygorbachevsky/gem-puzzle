@@ -1,6 +1,4 @@
-import { getDragStartSelectors } from "./ducks";
-
-const { getIsElementsInOneRow } = getDragStartSelectors;
+import { getIsElementsInOneRow } from "helpers";
 
 function getDragStart(config) {
   const { elements, values } = this._state;

@@ -30,7 +30,7 @@ const plugins = [
   new CopyWebpackPlugin({
     patterns: [
       {
-        from: path.resolve(__dirname, "../../../public/favicon.ico"),
+        from: path.resolve(__dirname, "../../../public/favicon.png"),
         to: path.resolve(__dirname, "../../../build"),
       },
     ],

@@ -1,0 +1,13 @@
+
+@mixin dragNDrop(){
+
+  .puzzle_hidden {
+    visibility: hidden;
+  }
+
+  .empty_hovered {
+    background-color: rgba(0, 0, 0, 0.5);;
+  }
+}
+
+

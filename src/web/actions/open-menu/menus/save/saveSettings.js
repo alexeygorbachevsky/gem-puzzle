@@ -1,4 +1,7 @@
 import { openModal } from "../../../open-modal";
+import { saveHelpers } from "./ducks";
+
+const { setDifficulty } = saveHelpers;
 
 function saveSettings() {
   const { elements, values } = this._state;
@@ -6,13 +9,7 @@ function saveSettings() {
   values.dimension = Number(elements.boardSizeSelect.value.slice(0, 1));
   values.isAnimation = elements.moveAnimationCheckbox.checked;
 
-  if (elements.difficultySelect.value === "Digits") {
-    values.difficulty = 1;
-  } else if (elements.difficultySelect.value === "Picture with digits") {
-    values.difficulty = 2;
-  } else if (elements.difficultySelect.value === "Picture only") {
-    values.difficulty = 3;
-  }
+  setDifficulty.call(this);
 
   localStorage.setItem(
     "settings",
@@ -27,6 +24,7 @@ function saveSettings() {
   elements.settingsMenu.remove();
   values.isPauseClicked = false;
   values.isVolumeOn = true;
+
   this.init();
   openModal.call(this, "Settings are successfully applied");
 }

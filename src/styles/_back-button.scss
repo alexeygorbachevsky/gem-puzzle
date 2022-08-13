@@ -1,0 +1,18 @@
+
+@mixin back-button(){
+
+  .backButton {
+    font-family: Consolas, Georgia, sans-serif;
+    cursor: pointer;
+    font-size: 32px;
+    color: red;
+    -moz-user-select: none;
+    user-select: none;
+
+    &:hover {
+      text-shadow: 0 0 5px red;
+    }
+  }
+}
+
+

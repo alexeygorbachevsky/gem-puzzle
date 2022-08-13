@@ -1,0 +1,87 @@
+@mixin rules-menu() {
+  .rulesMenu {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #25ff54;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+
+    .rulesMenuTitle {
+      font-size: 29px;
+      font-family: Consolas, Georgia, sans-serif;
+      color: red;
+    }
+
+    .content {
+      width: 80%;
+      height: 60%;
+
+      overflow-y: scroll;
+
+      font-size: 20px;
+      font-family: Consolas, Georgia, sans-serif;
+
+
+      p {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .mainText {
+
+      }
+
+      .p1 {
+        margin-top: 2%;
+      }
+
+      .p2 {
+        margin-top: 1%;
+      }
+
+      .p3 {
+        margin-top: 1%;
+      }
+
+      .p4 {
+        margin-top: 1%;
+      }
+
+      .p5 {
+        margin-top: 1%;
+      }
+
+      .p6 {
+        margin-top: 1%;
+      }
+
+      .p7 {
+        margin-top: 1%;
+      }
+
+      .p8 {
+        margin-top: 1%;
+      }
+
+      .p9 {
+        margin-top: 1%;
+      }
+
+      .p10 {
+        margin-top: 1%;
+      }
+    }
+
+
+  }
+
+}
+
+
