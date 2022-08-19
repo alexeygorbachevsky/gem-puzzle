@@ -1,5 +1,11 @@
-import { openMenu, initiatePuzzles, initiateDragNDrop } from "../actions";
-import { initiateAudio, createSortedPuzzles, drawElements } from "./actions";
+import {
+  openMenu,
+  initiatePuzzles,
+  initiateDragNDrop,
+  initiateAudio,
+  createSortedPuzzles,
+  drawElements,
+} from "../actions";
 
 function init() {
   drawElements.call(this);

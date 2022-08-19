@@ -1,4 +1,4 @@
-import { openMenu } from "../../../../../../../actions";
+import { openMenu } from "../../../../../index";
 
 function getPauseButtonListeners() {
   const { values, elements } = this._state;

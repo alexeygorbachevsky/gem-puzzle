@@ -1,4 +1,4 @@
-import { updateTime } from "../../../../../actions";
+import { updateTime } from "../../../index";
 
 function openHelpMenu() {
   const { elements, values } = this._state;
